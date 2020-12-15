@@ -1,0 +1,631 @@
+@import url('https://fonts.googleapis.com/css2?family=Texturina:wght@200;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lalezar&display=swap');
+@import url('https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css');
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+html{
+  --y: #f7e10e;
+  --g: #939599;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+
+/*---Set for iPhoneX---*/
+.App{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 375px;
+  height: 812px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  border: solid #aaa 1px;
+  border-radius: 10px;
+  padding: 6px;
+}
+
+.header, .header-mngr{
+  cursor: default;
+  position: relative;
+  width: 100%;
+  height: 200px;
+  text-align: center;
+  font-size: 40px;
+  font-family: 'Lalezar';
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.header-mngr{
+  font-size: 20px;
+  align-self: flex-start;
+  border-bottom: solid #999 1px;
+  height: 80px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.header-h1{
+  color: var(--g);
+}
+
+.header-h1-blue{
+  color: #00A1F1;
+}
+.header-h1-red{
+  color: #F65314;
+}
+.header-h1-green{
+  color: #7CBB00;
+}
+.header-h1-yellow{
+  color: #FFBB00;
+}
+
+.header-p{
+  font-size: 20px;
+  color: #202124;
+  font-family: 'Vazir';
+}
+
+.login{
+  position: relative;
+  width: 100%;
+  height: 300px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login-input{
+  font-family: 'Vazir';
+  margin: 17px 0;
+  width: 300px;
+  border-radius: 4px;
+  color: #202124;
+  font-size: 17px;
+  height: 56px;
+  padding: 13px 15px;
+  outline: none;
+  border: solid #aaa 1px;
+}
+
+.form-error{
+  font-size: 12px;
+  color: #E50914;
+}
+
+.button-cont{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 300px;
+}
+
+.create-account{
+  font-size: 17px;
+  color: #00aba9;
+  text-decoration: none;
+}
+
+.login-button, .submit-button{
+  border: none;
+  background-color: #00aba9;
+  font-family: 'Vazir';
+  text-align: center;
+  margin: 20px 0;
+  width: 70px;
+  border-radius: 4px;
+  color: white;
+  font-size: .875rem;
+  height: 36px;
+  padding: 13px 15px;
+  outline: none;
+  line-height: 10px;
+  cursor: pointer;
+}
+.submit-button{
+  width: 100px;
+}
+.main-footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  padding: 20px 30px;
+  align-self: flex-end;
+}
+
+.footer-item{
+  margin: 0 10px;
+  text-decoration: none;
+  color: #111;
+  font-size: 12px;
+  opacity: .5;
+  transition: all .2s;
+}
+.footer-item:hover{
+  opacity: .8;
+}
+
+.notfound-h1{
+  font-size: 120px;
+}
+.notfound-p{
+  margin-top: -30px;
+  font-size: 17px;
+  font-family: 'Vazir';
+}
+.notfound2-p{
+  margin-top: 10px;
+  font-size: 10px;
+  font-family: 'Vazir';
+  color: #888;
+  word-wrap: break-word;
+  padding: 0 10px;
+}
+.notfound2-ret{
+  margin-top: 50px;
+  font-size: 20px;
+  font-family: 'Vazir';
+  color: #888;
+  padding: 10px 10px;
+  width: 100px;
+  align-self: center;
+  text-align: center;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all .2s;
+}
+.notfound2-ret:hover{
+  background-color: #f6f6f6;
+  color: #666;
+}
+
+.mngr-bottom-nav{
+  position: relative;
+  align-self: flex-end;
+  width: 100%;
+  height: 90px;
+  border-top: solid #999 1px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.mngr-add-info-cont, .mngr-add-info{
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: white;
+  top: -50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.mngr-add-info{
+  width: 90%;
+  top: 0;
+  height: 90%;
+  text-align: center;
+  background-color: #00A1F1;
+  box-shadow: 0px -5px 7px rgba(0, 0, 0, 0.3);
+}
+
+.section-cont{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding: 20px 5px;
+  overflow-y: auto;
+}
+
+.section{
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+  border: solid #999 .1px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all .3s;
+  flex: 0 0 auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.section:hover{
+  background-color: #fbfbfb;
+}
+
+.section-title{
+  font-size: 20px;
+  width: 100%;
+  border-bottom: solid #bbb 1px;
+  padding-bottom: 10px;
+  color: #555;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-contant{
+  padding: 20px 5px;
+  color: #777;
+}
+
+.done{
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border: solid #555 1px;
+  border-radius: 50%;
+  transition: all .3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.done:hover{
+  background-color: #f1f1f1;
+}
+
+@keyframes go {
+  from {left:0}
+  to{left:1000px}
+}
+
+.mItem-cont{
+  position: relative;
+  width: 100%;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+}
+
+.mItem{
+  position: relative;
+  width: 160px;
+  min-height: 155px;
+  flex: 0 0 auto;
+  border-radius: 10px;
+  margin: 4px 2px;
+  word-wrap: break-word;
+  padding: 8px 8px;
+  cursor: pointer;
+  font-size: 20px;
+  color: white;
+  transition: all .3s;
+}
+.mItem:hover{
+  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.5);
+  transform: translate(-1%, -1%);
+}
+
+.mItem:hover h1{
+  opacity: 1;
+}
+
+.mItem-h1{
+  font-size: 25px;
+  opacity: .7;
+  border-bottom: solid #ffffff33 1px;
+  transition: all .3s;
+}
+
+.mItem-p{
+  font-size: 14px;
+  padding-top: 10px;
+  font-weight: lighter;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*---Galaxy---*/
+@media screen and (max-width: 300px) and (min-width: 250px){
+  .App{
+    width: 280px;
+    height: 653px;
+  }
+  .header{
+    font-size: 30px;
+    height: 190px;
+  }
+  .header-p{
+    font-size: 15px;
+  }
+  .login{
+    height: 250px;
+  }
+  .login-input{
+    font-family: 'Vazir';
+    margin: 15px 0;
+    width: 250px;
+    color: #202124;
+    font-size: 15px;
+    height: 56px;
+  }
+  .button-cont{
+    width: 250px;
+  }
+  .create-account{
+    font-size: 15px;
+  }
+
+  .main-footer{
+    margin-left: 20px;
+  }
+
+  .login-button, .submit-button{
+    width: 65px;
+    border-radius: 5px;
+    font-size: .8rem;
+    height: 34px;
+    line-height: 8px;
+  }
+  .submit-button{
+    width: 95px;
+  }
+  .mItem{
+    width: 96%;
+  }
+
+}
+
+/*---iPhone 5---*/
+@media screen and (max-width: 350px) and (min-width: 300px){
+  .App{
+    width: 320px;
+    height: 568px;
+    padding: 20px;
+  }
+  .header-h1{
+    font-size: 50px;
+  }
+  .header-p{
+    font-size: 20px;
+  }
+  .header{
+    height: 130px;
+  }
+  .login{
+    top: 70px;
+    height: 250px;
+  }
+  .login-input{
+    font-family: 'Vazir';
+    margin: 15px 0;
+    width: 250px;
+    color: #202124;
+    font-size: 15px;
+    height: 56px;
+  }
+  .button-cont{
+    width: 250px;
+  }
+  .create-account{
+    font-size: 15px;
+  }
+
+  .login-button, .submit-button{
+    width: 65px;
+    border-radius: 5px;
+    font-size: .8rem;
+    height: 34px;
+    line-height: 8px;
+  }
+  .submit-button{
+    width: 95px;
+  }
+  .mItem{
+    width: 98%;
+  }
+}
+
+/*---S5---*/
+@media screen and (max-width: 370px) and (min-width: 350px){
+  .App{
+    width: 360px;
+    height: 640px;
+  }
+  .header-h1{
+    font-size: 50px;
+  }
+  .header-p{
+    font-size: 20px;
+  }
+  .header{
+    height: 130px;
+  }
+  .login{
+    top: 70px;
+    height: 250px;
+  }
+  .login-input{
+    font-family: 'Vazir';
+    margin: 15px 0;
+    width: 250px;
+    color: #202124;
+    font-size: 15px;
+    height: 56px;
+  }
+  .button-cont{
+    width: 250px;
+  }
+  .create-account{
+    font-size: 15px;
+  }
+
+  .login-button, .submit-button{
+    width: 65px;
+    border-radius: 5px;
+    font-size: .8rem;
+    height: 34px;
+    line-height: 8px;
+  }
+  .submit-button{
+    width: 95px;
+  }
+  .mItem{
+    width: 98%;
+  }
+}
+
+
+/*---iPhone 6/7/8 Plus---*/
+@media screen and (max-width: 500px) and (min-width: 400px){
+  .App{
+    width: 414px;
+    height: 736px;
+  }
+  .mItem{
+    width: 180px;
+  }
+}
+
+/*---Surface Duo---*/
+@media screen and (min-width: 500px) and (max-width: 600px){
+  .App{
+    width: 540px;
+    height: 720px;
+  }
+}
+
+/*---iPad---*/
+@media screen and (min-width: 700px) and (max-width: 800px){
+  .App{
+    width: 768px;
+    height: 1024px;
+  }
+  .header{
+    font-size: 60px;
+    height: 280px;
+  }
+  .header-p{
+    margin: -20px 0;
+    font-size: 30px;
+  }
+  .login{
+    height: 350px;
+  }
+
+  .login-input{
+    font-family: 'Vazir';
+    margin: 17px 0;
+    width: 350px;
+    color: #202124;
+    font-size: 20px;
+    height: 56px;
+  }
+
+  .button-cont{
+    width: 350px;
+  }
+
+  .create-account{
+    font-size: 20px;
+  }
+
+  .login-button, .submit-button{
+    width: 75px;
+    border-radius: 5px;
+    font-size: 1rem;
+    height: 40px;
+    line-height: 10px;
+  }
+  .submit-button{
+    width: 115px;
+  }
+}
+
+/*---height<800---*/
+@media screen and (max-height: 800px) and (min-width: 800px){
+  .App{
+    width: 375px;
+    height: 600px;
+  }
+  .login{
+    margin-top: -50px;
+  }
+}
+
+/*---height<600---*/
+@media screen and (max-height: 600px){
+  .App{
+    width: 375px;
+    height: 500px;
+  }
+  .login{
+    margin-top: -30px;
+  }
+  .login-input{
+    margin: 7px 0;
+  }
+}
+/*---height<500---*/
+@media screen and (max-height: 500px){
+  .App{
+    width: 375px;
+    height: 400px;
+  }
+  .header{
+    margin-top: -70px;
+  }
+  .login{
+    margin-top: -40px;
+  }
+}
