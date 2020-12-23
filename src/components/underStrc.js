@@ -4,9 +4,12 @@ import {
   useLocation,
 } from 'react-router-dom';
 
-const UnderStr = () => {
+const UnderStr = ({changeBackIconPath}) => {
   let history = useHistory()
   document.title = 'صفحه در دست ساخت';
+  
+  //changeBackIconPath('/manager')
+  
   return (
     <div className="header" dir="rtl">
       <h1 className="header-h1" style={{fontSize:60}}><span className="header-h1-red">در</span><span className="header-h1-green">دس</span><span className="header-h1-blue">ت </span><span className="header-h1-yellow">سا</span><span className="header-h1-blue">خت</span><span className="header-h1-red">!</span></h1>

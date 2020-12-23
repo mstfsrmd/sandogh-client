@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import  writeFileP from "write-file-p";
 import {
-  BrowserRouter as Router,
+  BrowserRouter ,
   Switch,
   Route,
   Redirect,
+  useHistory
 } from 'react-router-dom';
 import Header from './components/header';
 import Login from './components/login';
@@ -13,75 +13,136 @@ import Footer from './components/main-footer';
 import NotFound from './components/404';
 import UnderStr from './components/underStrc';
 import Manager from './components/manager';
-
-
+import ConnectionError from './components/connectionError'
+import io from 'socket.io-client';
+import host from './constants/host'
+const socket = io.connect(host,{transports: ['websocket']});
 
 const App = () => {
-  const[registered, setRegistered] = useState(false);
+  const[isUser, setIsUser] = useState(false);
   const[manager, setManager] = useState(false);
+  const[logedInUser, setLogedInUser] = useState('');
+  const[error, setError] = useState(false);
 
   const isVerified = (e) => {
     if (e) {
-      setRegistered(true)
+      setIsUser(true)
+    }else {
+      setIsUser(false)
+    }
+  }
+
+  const setErrorF = (e) => {
+    if (e) {
+      setError(<Redirect to={'/error'} />)
+    }else {
+      setError(false)
     }
   }
 
   const isManager = (e) => {
     if (e) {
       setManager(true)
-      localStorage.setItem('i', true)
+      localStorage.setItem('manager', true)
     }
   }
 
+  const logedInUserF = (e) => {
+    setLogedInUser(e)
+    localStorage.setItem('username', e)
+  }
+
   useEffect(() => {
-    if (localStorage.getItem('i')) {
+    if (localStorage.getItem('manager')) {
       setManager(true)
     }
-  }, [registered, manager])
+  })
+
+  useEffect(() => {
+    if (localStorage.getItem('username')) {
+      setIsUser(true)
+      setLogedInUser(localStorage.getItem('username'))
+    }
+  })
+
+  useEffect(() => {
+    let username = localStorage.getItem('username');
+    socket.emit('activity', username)
+  }, [1])
+
+  setTimeout(() => {
+    if (!socket.connected) {
+      setError(<Redirect to={'/error'} />)
+    }else {
+      setError(false)
+    }
+  }, 1000);
 
   return (
-    <Router>
+    <BrowserRouter>
       <Switch>
         <Route path={'/'} exact>
           <Header />
-          <Login isVerified={isVerified} isManager={isManager} />
+          <Login isVerified={isVerified} isManager={isManager} logedInUserF={logedInUserF} setErrorF={setErrorF}/>
           <Footer />
-          {(registered === true) ? <Redirect to={'/من'} /> : <Redirect to={'/'} />}
+          {(isUser === true) ? <Redirect to={'/me'} /> : <Redirect to={'/'} />}
           {(manager === true) ? <Redirect to={'/manager'} /> : <Redirect to={'/'} />}
+          {(error === false) ? <Redirect to={'/'} /> : <Redirect to={'/error'} />}
         </Route>
-        <Route path={'/ورود'}>
+        <Route path={'/login'}>
           <Header />
-          <Login isVerified={isVerified} isManager={isManager}/>
+          <Login isVerified={isVerified} isManager={isManager} logedInUserF={logedInUserF} setErrorF={setErrorF}/>
           <Footer />
-          {(registered === true) ? <Redirect to={'/من'} /> : <Redirect to={'/ورود'} />}
-          {(manager === true) ? <Redirect to={'/manager'} /> : <Redirect to={'/ورود'} />}
+          {(isUser === true) ? <Redirect to={'/me'} /> : <Redirect to={'/login'} />}
+          {(manager === true) ? <Redirect to={'/manager'} /> : <Redirect to={'/login'} />}
+          {(error === false) ? <Redirect to={'/login'} /> : <Redirect to={'/error'} />}
         </Route>
-        <Route path={'/ثبت'}>
+        <Route path={'/register'}>
           <Header />
           <Register isVerified={isVerified}/>
           <Footer />
-          {(registered === true) ? <Redirect to={'/من'} /> : <Redirect to={'/ثبت'} />}
+          {(isUser === true) ? <Redirect to={'/me'} /> : <Redirect to={'/register'} />}
+          {(manager === true) ? <Redirect to={'/manager'} /> : <Redirect to={'/login'} />}
+          {(error === false) ? <Redirect to={'/register'} /> : <Redirect to={'/error'} />}
         </Route>
-        <Route path={'/من'}>
-          {(registered === true) ? <Header /> : <Redirect to={'/ورود'} />}
+        <Route path={'/me'}>
+          {(manager === true && isUser === true) ? <Redirect to={'/manager'} />
+          :(isUser === true && manager != true) ? <Header logedInUser={logedInUser} manager={manager} />
+          : <Redirect to={'/login'} />}
+          {(error === false) ? <Redirect to={'/me'} /> : <Redirect to={'/error'} />}
         </Route>
         <Route path={'/manager'}>
-            {(manager === true) ? <Manager /> : <Redirect to={'/ورود'} />}
+            {(manager === true && isUser === true) ? <Manager manager={manager} logedInUser={logedInUser} />
+            :(isUser === true && manager != true) ? <Redirect to={'/me'} />
+            : <Redirect to={'/login'} />}
+            {(error === false) ? <Redirect to={'/manager'} /> : <Redirect to={'/error'} />}
         </Route>
-        <Route path={'/راهنما'}>
+        <Route path={'/help'}>
             <UnderStr />
         </Route>
-        <Route path={'/خصوصی'}>
+        <Route path={'/privacy'}>
             <UnderStr />
         </Route>
-        <Route path={'/شرایط'}>
+        <Route path={'/terms'}>
             <UnderStr />
+        </Route>
+        <Route path={'/error'}>
+            {(error === false) ? <Redirect to={'/'} /> : <ConnectionError /> }
+        </Route>
+        <Route path={'/ثبت'}>
+            <Redirect to={'/register'} />
+        </Route>
+        <Route path={'/ورود'}>
+            <Redirect to={'/login'} />
+        </Route>
+        <Route path={'/من'}>
+            <Redirect to={'/me'} />
         </Route>
         <Route path={'*'}>
             <NotFound />
         </Route>
       </Switch>
-    </Router>
+    </BrowserRouter>
   );
 }
 

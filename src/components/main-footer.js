@@ -9,9 +9,9 @@ const Footer = () => {
 
   return (
     <div className="main-footer">
-      <Link className="footer-item" to={"/راهنما"}>راهنما</Link>
-      <Link className="footer-item" to={"/خصوصی"}>حریم خصوصی</Link>
-      <Link className="footer-item" to={"/شرایط"}>شرایط</Link>
+      <Link className="footer-item" to={"/help"}>راهنما</Link>
+      <Link className="footer-item" to={"/privacy"}>حریم خصوصی</Link>
+      <Link className="footer-item" to={"/terms"}>شرایط</Link>
     </div>
   );
 }

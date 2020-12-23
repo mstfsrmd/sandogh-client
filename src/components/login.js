@@ -7,7 +7,7 @@ import io from 'socket.io-client';
 import host from '../constants/host'
 const socket = io.connect(host,{transports: ['websocket']});
 
-const Login = ({isVerified, isManager}) => {
+const Login = ({isVerified, isManager, logedInUserF, setErrorF}) => {
   document.title = 'ورود به حساب کاربری';
   const[userValue, setUserValue] = useState('');
   const[passValue, setPassValue] = useState('');
@@ -18,34 +18,48 @@ const Login = ({isVerified, isManager}) => {
   useEffect(() => {
     socket.on('verifyRes', function (e) {
       if (e.username) {
-        if (e.cert) {
+        if (e.manager) {
           setVerified(true)
           isManager(true)
           setError('')
+          logedInUserF(e.username)
         }else {
           setVerified(true)
-          setError('')
           isVerified(true)
+          setError('')
+          logedInUserF(e.username)
         }
       }else {
-        setError('نام کارربری یا رمزعبور نادرست است')
+        setError('نام کاربری یا رمزعبور نادرست است')
         isVerified(false)
       }
     })
   },[verified])
 
+  useEffect(() => {
+    socket.on('s', function () {
+      alert('fdsgdfs')
+      console.log(socket);
+    })
+  })
+
   return (
     <form className="login" dir="rtl" onSubmit={
       (e)=>{
         e.preventDefault();
-        socket.emit('verify', {userValue, passValue})
+        if (!socket.connected) {
+          setErrorF(true)
+        }else {
+          socket.emit('verify', {userValue, passValue})
+          setErrorF(false)
+        }
       }
     }>
       <input className="login-input"
       type="text"
       value={userValue}
       onChange={((e)=>{setUserValue(e.target.value)})}
-      placeholder="نام کاربری خود را وارد نمایید"
+      placeholder="نام کاربری خود را وارد کنید"
       required
       autoComplete="true"
        />
@@ -59,7 +73,7 @@ const Login = ({isVerified, isManager}) => {
       />
       <div className="form-error">{error}</div>
       <div className="button-cont">
-        <Link className="create-account" to={'/ثبت'}>
+        <Link className="create-account" to={'/register'}>
           ایجاد حساب
         </Link>
         <button className="login-button">ورود</button>

@@ -20,6 +20,23 @@ let sectionContent = [
 
 ]
 
+let sectionContentAdd = [
+  [
+    1,
+    'ساخت پایگاه داده را شروع کنید',
+    'روی این کارت کلیک کنید یا دکمه آبی پایین صفحه را بزنید. اطلاعات خواسته شده را وارد کرده و ثبت را بزنید تا اطلاعات کاربر وارد پایگاه داده شود.',
+    '/manager/add/user'
+  ],
+  [
+    2,
+    'اطلاعات عمومی صندوق را ثبت کنید',
+    'اطلاعات عمومی صندوق، مانند موجودی کل، تعداد اعضاء، معرفی، قوانین و... را ثبت کنید. روی این کارت کلیک کنید یا به پایین اسکرول کنید.',
+    '/manager/add/public'
+  ]
+
+]
+
 //let sectionContent = [];
 
-export default sectionContent;
+export {sectionContent}
+export {sectionContentAdd}

@@ -6,8 +6,10 @@ import UnderStr from './underStrc';
 import MItem from './mItem';
 import mItemContent from '../constants/mItem-content.js'
 
-const Managment = () => {
+const Managment = ({changePath}) => {
   const[list, setList] = useState(0)
+
+  changePath('/manager/add')
 
 
   const mItemComp = mItemContent.map((item, i) => (
